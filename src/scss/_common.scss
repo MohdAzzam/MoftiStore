@@ -1,0 +1,14 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+.input-wrapper{
+    // width: 512px;
+    margin: auto;
+   position: relative; 
+ 
+}
+.visibility-password{
+    position: absolute;
+    bottom: 0;
+    @include auto-flip-property(right, 5px, unset, left, 1);
+}

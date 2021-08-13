@@ -1,0 +1,21 @@
+#footer {
+    // position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    background-color: #343a40;
+
+    .message {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 0.5rem;
+    }
+}

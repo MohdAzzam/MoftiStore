@@ -1,0 +1,36 @@
+
+
+.pagination-wrapper {
+    .pagination {
+        display: flex;
+        padding-left: 0;
+        list-style: none;
+        border-radius: 0.25rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        .disabled-link {
+            .page-link {
+                color: gray;
+                cursor: not-allowed;
+            }
+        }
+        .active-link {
+            .page-link {
+                background-color: white;
+                color: #484848;
+                font-weight: 700;
+            }
+        }
+        .page-link {
+            cursor: pointer;
+            position: relative;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: blue;
+            background-color: white;
+            border: 1px solid #dee2e6;
+        }
+    }
+}

@@ -1,0 +1,63 @@
+{
+    "home.title":"Mofti Store",
+    "guest.register":"Register",
+    "guest.login":"Login",
+    "user.home":"Home",
+    "user.category":"Category",
+    "email.req":"Email Required",
+    "password.req":"PassWord Required",
+    "product.stock":"Product In stock",
+    "User Name":"User Name",
+    "username.req":"User Name Required",
+    "Phone Number":"Phone Number",
+    "please type a correct email":"Please type a correct email",
+    "phonenum.req":"Phone Number Required",
+    "This username has already been taken.":"This username has already been taken",
+    "This phone number has already been taken.":"This phone number has already been taken.",
+    "This email address has already been taken.":"This email address has already been taken.",
+    "price":"Price",
+    "description":"Description",
+    "Password":"Password",
+    "Email":"Email",
+    "user.logout":"Logout",
+    "Added Successfully":"Added Successfully",
+    "Out of Stock":"Out of Stock",
+    "addToCart":"Add to Cart",
+    "user.profile":"Profile",
+    "user.update":"Update",
+    "First Name":"First Name",
+    "Last Name":"Last Name",
+    "user.back":"Back",
+    "Full Name":"Full Name",
+    "user.gender":"Gender",
+    "male":"male",
+    "female":"female",
+    "other":"other",
+    "Update Profile":"Update Profile",
+    "Update Password":"Update Password",
+    "Old Password":"Old Password",
+    "New Password":"New Password",
+    "Old Password cannot be blank.":"Old Password cannot be blank.",
+    "New Password cannot be blank.":"New Password cannot be blank.",
+    "New Password should contain at least 8 characters.":"New Password should contain at least 8 characters.",
+    "Old password not match !!":"Old password not match !!",
+    "Old Password should contain at least 8 characters.":"Old Password should contain at least 8 characters.",
+    "phoneNumber.error.taken" : "Phone Number {phoneNumber} has already been taken.",
+    "email.error.taken":"Email {email} has already been taken.",
+    "total":"Total",
+    "user.reset":"Reset",
+    "Street name":"Street name",
+    "Region":"Region",
+    "City":"City",
+    "Country":"Country"
+
+
+
+
+
+
+
+
+
+
+}

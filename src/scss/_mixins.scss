@@ -1,0 +1,14 @@
+@mixin auto-flip-property($ltrProperty, $ltr-value, $rtl-value, $rtlProperty: $ltrProperty, $restValue: 0) {
+    #{$ltrProperty}: $ltr-value;
+  
+    @if $restValue == 1 {
+      [dir=rtl] & {
+        #{$ltrProperty}: $rtl-value;
+        #{$rtlProperty}: $ltr-value;
+      }
+    } @else {
+      [dir=rtl] & {
+        #{$rtlProperty}: $rtl-value;
+      }
+    }
+  }

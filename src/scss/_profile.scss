@@ -1,0 +1,71 @@
+@import "mixins";
+#profile-warpper {
+    .user-head {
+        .user-name {
+            color: #484848;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .number {
+            color: #959595;
+            font-size: 20px;
+        }
+        .user-edit {
+            cursor: pointer;
+            .user-profile-edit {
+                display: none;
+            }
+            .edit-svg {
+                .b {
+                    fill: #484848;
+                }
+            }
+            &:hover {
+                background-color: #f5f5f5;
+                color: #484848;
+                .user-profile-edit {
+                    display: block;
+                    font-size: 14px;
+                    color: #484848;
+                    margin-top: 1.25rem;
+                    margin-left: 0.5rem;
+                    font-weight: 700;
+                    @include auto-flip-property(margin-left, 0.75rem, unset, margin-right, 1);
+                }
+                .edit-svg {
+                    margin-top: 12px;
+                }
+            }
+        }
+    }
+
+    .user-tabs {
+        border-bottom: 2px solid #484848;
+        .user-tab {
+            margin-bottom: 0.5rem;
+            font-size: 20px;
+            @include auto-flip-property(margin-left, 0.75rem, unset, margin-right, 1);
+            &:first-child {
+                @include auto-flip-property(margin-left, unset, unset, margin-right, 1);
+            }
+            &.active {
+                border-bottom: 2px solid #e30b1c;
+                margin-bottom: 0;
+                color: #e30b1c;
+                font-size: 20px;
+                font-weight: bolder;
+            }
+        }
+    }
+    .my-fav {
+        color: #484848;
+        font-size: 20px;
+        font-weight: bolder;
+        flex-grow: 1;
+    }
+    .search-input{
+        margin-bottom: -50px;
+        margin-top: -5px;
+        border: 0;
+    }
+}
