@@ -77,7 +77,10 @@ export default function UpdateProfile() {
             setLoader(false);
         })
     }
-
+    /**
+     * 
+     * Redirect to profile page
+     */
     const back = () => {
         history.push('/profile');
     }

@@ -50,5 +50,28 @@
     "Street name":"اسم الشارع",
     "Region":"المنطقة",
     "City":"المدينة",
-    "Country":"اسم البلد"
+    "Country":"اسم البلد",
+    "country is a required field":"أسم البلد مطلوب",
+    "city is a required field":"أسم المدينة مطلوب",
+    "region is a required field":"أسم المنطقة مطلوب",
+    "street_name is a required field":"أسم الشارع مطلوب",
+    "Created At":"ناريخ الطلب",
+    "Status":"حالة الطلب",
+    "Total":"المجموع",
+    "Address":"العنوان",
+    "Items":"المنتجات",
+    "Add Addressess":"اضافة عنوان",
+    "Edit":"تعديل",
+    "Delete":"حذف",
+    "Show Items":"عرض المننجات",
+    "name":"الاسم",
+    "Image":"الصورة",
+    "Quantity":"العدد",
+    "Edit address":"تعديل عنوان",
+    "Add":"اضافة",
+    "Save":"حفظ",
+    "Close":"اغلاق"
+
+
+
 }

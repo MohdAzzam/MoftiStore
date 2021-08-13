@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Table } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { UserHelper } from '../../api/UserHelper';
 
+/**
+ * Oeders 
+ * 
+ * @returns {JSX}
+ */
 export default function Orders() {
     const [orders, setOrders] = useState(false);
     const [ordersItem, setOrderItem] = useState(false);
-    const [show,setShow]=useState(false);
+    const [show, setShow] = useState(false);
+    /**
+     * on load call the api 
+     */
     useEffect(() => {
         UserHelper.myOrder().then(response => {
             setOrders(response.data.data);
@@ -14,8 +23,11 @@ export default function Orders() {
             console.log(err)
         })
     }, [])
+    /**
+     * Toggel the data
+     * @param {*} data 
+     */
     const handelShowItem = (data) => {
-        console.log(data)
         setShow(!show);
         setOrderItem(data);
     }
@@ -26,11 +38,15 @@ export default function Orders() {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Created At</th>
-                            <th>Status</th>
-                            <th>Total</th>
-                            <th>Address</th>
-                            <th>Items</th>
+                            <th>
+                                <FormattedMessage id='Created At' />
+                            </th>
+                            <th>
+                                <FormattedMessage id='Status' />
+                            </th>
+                            <th><FormattedMessage id='Total' /></th>
+                            <th><FormattedMessage id='Address' /></th>
+                            <th><FormattedMessage id='Items' /></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +58,9 @@ export default function Orders() {
                                     <td>{item.status}</td>
                                     <td>{item.total}</td>
                                     <td>{item.address['country'] + item.address['city']}</td>
-                                    <td className='btn btn-primary p-1 mt-1 mr-2 ml-2' onClick={() => handelShowItem(item.items)}>Show Items</td>
+                                    <td className='btn btn-primary p-1 mt-1 mr-2 ml-2' onClick={() => handelShowItem(item.items)}>
+                                        <FormattedMessage id='Show Items' />
+                                    </td>
 
                                 </tr>
                             )
@@ -56,10 +74,10 @@ export default function Orders() {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Image</th>
-                            <th>Quantity</th>
+                            <th><FormattedMessage id='name'/></th>
+                            <th><FormattedMessage id='price'/></th>
+                            <th><FormattedMessage id='Image'/></th>
+                            <th><FormattedMessage id='Quantity'/></th>
                         </tr>
                     </thead>
                     <tbody>

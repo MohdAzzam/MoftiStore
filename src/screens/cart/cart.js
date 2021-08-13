@@ -6,21 +6,33 @@ import GlobalContext from '../../context/GlobalContext'
 import Loading from '../../components/Loading';
 import { useHistory } from "react-router-dom";
 
+/**
+ * 
+ * Cart Screen
+ * 
+ * @returns {JSX}
+ */
 
 export default function Cart() {
+
     const { handelCartCount } = useContext(GlobalContext.Context)
     const [userCart, setUserCart] = useState(false);
     const [message, setMessage] = useState(false);
     const [load, isLoad] = useState(false);
     const history = useHistory();
+    /**
+     * on Load return the cart from the api 
+     */
     useEffect(() => {
         CartHelper.myCart().then((res) => {
-            console.log(res.data);
             setUserCart(res.data)
         }).catch(e => console.log(e))
     }, [])
-
-    // let count = 1;
+    /**
+     * Delte item from cart
+     * 
+     * @param {Number} id 
+     */
     const handeldelete = (id) => {
         CartHelper.deleteFromCart(id).then(res => {
             setUserCart(res.data)
@@ -29,13 +41,25 @@ export default function Cart() {
             console.log(e);
         })
     }
+    /**
+     * Update Quantity
+     * 
+     * @param {Number} id 
+     * @param {Number} quantity 
+     */
     const handelQuantityUpdate = (id, quantity) => {
+        /**
+         * check if quantity less than 1 return warning to user
+         */
         if (quantity < 1) {
             setMessage({
                 type: 'warning',
                 message: 'Quantity cannt be less than 1 '
             })
         } else {
+            /**
+             * send the data to the api to update
+             */
             isLoad(true);
             CartHelper.updateItemQuantity(id, quantity).then(res => {
                 isLoad(false);
@@ -56,10 +80,16 @@ export default function Cart() {
         }
 
     }
+    /**
+     * Redirect to check out page
+     */
     const handelCheckOut = () => {
 
         history.push('/checkOut');
     }
+    /**
+     * Call the api to clear cart content 
+     */
     const handelClearCart = () => {
         CartHelper.clearUserCart().then(res => {
             console.log(res)
@@ -70,6 +100,7 @@ export default function Cart() {
             console.log(e)
         })
     }
+    
     return (
         <article>
             {load ? (<Loading />) : []}

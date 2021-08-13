@@ -20,7 +20,6 @@ export default function Input({
     onChange,
     defaultValue
 }) {
-    // console.log(defaultValue);
     return (
         <div className='form-group input-feild'>
             <label className='input-lable'>

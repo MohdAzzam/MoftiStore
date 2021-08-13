@@ -48,7 +48,10 @@ export default function CategoryProduct() {
             setLoading(false);
         })
     }, [slug, pageNumber,name]);
-
+    
+    /**
+     * on change on name in form  
+     */
     useEffect(() => {
         if (!showNameForm) {
             setName('');
@@ -57,14 +60,23 @@ export default function CategoryProduct() {
             inputEl.current.focus();
         }
     }, [showNameForm])
+    /**
+     * show search form 
+     */
     const handleChangeShowNameForm = () => {
         setShowNameForm(!showNameForm)
     }
+    /**
+     * handel change name
+     */
     let timer;
     const handleChangeName = (value) => {
         if (timer) {
             clearTimeout(timer);
         }
+        /**
+         * every one secound set the value to the name
+         */
         const timeout = setTimeout(() => {
             setName(value);
         }, 1000)

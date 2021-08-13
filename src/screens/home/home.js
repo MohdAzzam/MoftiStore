@@ -73,12 +73,15 @@ export default function Home() {
         }, 1000)
         timer = timeout;
     }
+
+    /**
+     * 
+     * On load return list of product from the api 
+     */
     useEffect(() => {
-        console.log(name)
         if (name==='' || name) {
             ProductHelper.list(name).then(res => {
                 setItem(res.data.data);
-                // console.log(res.data)
             }).catch(e => {
                 console.log(e)
             })

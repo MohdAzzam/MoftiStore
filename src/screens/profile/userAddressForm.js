@@ -8,6 +8,16 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Modal } from "react-bootstrap";
 
+/**
+ * 
+ * @param {*} reloadTable 
+ * @param {String} selectedAddressess 
+ * @param {String} action 
+ * @param {Boolean} isShow 
+ * @param {Boolean} onClose 
+ * @param {Boolean} onClose 
+ * @returns 
+ */
 export default function UserAddressForm({
     reloadTable,
     selectedAddressess,
@@ -27,10 +37,10 @@ export default function UserAddressForm({
 
     const validation = Yup.object().shape({
         country: Yup.string()
-            .required(),
-        city: Yup.string().required(),
-        region: Yup.string().required(),
-        street_name: Yup.string().required()
+            .required('country.req'),
+        city: Yup.string().required('city.req'),
+        region: Yup.string().required('region.req'),
+        street_name: Yup.string().required('street_name.req')
     });
 
     const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
@@ -42,14 +52,16 @@ export default function UserAddressForm({
         },
         resolver: yupResolver(validation)
     });
-
+    /**
+     * register from data
+     */
     useEffect(() => {
         register('country');
         register('city');
         register('region');
         register('street_name');
     }, [])
-
+    
     useEffect(() => {
         if (selectedAddressess) {
             setShow(true);
@@ -68,7 +80,7 @@ export default function UserAddressForm({
     const modal = watch();
 
     const handleClose = () => setShow(false);
-    const handleShow = () => { setShow(true); }
+    const handleShow = () => setShow(true);
 
     const handelAddress = (form) => {
         AddressHelper.addAddress(form).then(response => {

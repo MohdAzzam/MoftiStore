@@ -6,14 +6,20 @@ import { AddressHelper } from '../../api/AddressHelper';
 import { CartHelper } from '../../api/CartHelper';
 import { useHistory } from "react-router-dom";
 import GlobalContext from '../../context/GlobalContext'
-
+/**
+ * 
+ * Check out page 
+ * 
+ * @returns {JSX}
+ */
 export default function CheckOut() {
     const { handelCartCount } = useContext(GlobalContext.Context)
-
     const history = useHistory();
     const [myaddress, setMyaddress] = useState([]);
     const [total, setTotal] = useState(false);
-
+    /**
+     * on load page call the my cart api
+     */
     useEffect(() => {
         CartHelper.myCart().then(res => {
             console.log(res.data.total);
@@ -27,16 +33,23 @@ export default function CheckOut() {
     useEffect(() => {
         register('address_id');
     }, [])
-
+    
+    /**
+     * on load call my address api 
+     */
     useEffect(() => {
         AddressHelper.myAdressess().then(res => {
             let arr = [];
             let addresses = res.data.data;
-
+            /**
+             * check if there is address
+             */
             if (addresses.length) {
                 setValue('address_id', addresses[0].id);
             }
-
+            /**
+             * loop over address and add them to array to show them 
+             */
             addresses.forEach((item) => {
                 arr.push({
                     itemId: item.id,
@@ -49,17 +62,24 @@ export default function CheckOut() {
         })
     }, [])
 
-
+    /**
+     * handel checkout
+     *  
+     * @param {Object} data 
+     */
     const handelAddress = (data) => {
-        console.log(data);
         CartHelper.checkOut(data.address_id).then(res=>{
+            /**
+             * set the cart from context to zero 
+             * redirect the user to thanks page
+             */
             handelCartCount(0);
-
             history.push('/thanks')
         }).catch(err=>{
             console.log(err);
         })
     }
+    
     return (
 
         <Container>

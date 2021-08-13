@@ -10,6 +10,11 @@ import Address from './address';
 import { VIEWS } from '../../Constant';
 import Tab from '../../components/Tab';
 import Orders from './orders';
+/**
+ * 
+ * Profile 
+ * @returns {JSX}
+ */
 export default function Profile() {
     let history = useHistory();
     const { user } = useContext(GlobalContext.Context);
@@ -17,12 +22,17 @@ export default function Profile() {
 
     const [view, setView] = useState(VIEWS.FAVORITE);
 
-
+    /**
+     * Redirect to update profile page
+     */
     const handelProfile = () => {
         history.push('/update-profile');
     }
 
-
+    /**
+     * Tabs
+     * @param {String} name 
+     */
     function handlChangeTab(name) {
         setView(name)
     }
