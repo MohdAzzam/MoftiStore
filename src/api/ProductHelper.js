@@ -45,6 +45,6 @@ export const ProductHelper = {
      * @returns {Promise}
      */
     itemBySlug: (slug) => {
-        return axiosApi.get(`/items/${slug}`)
+        return axiosApi.get(`/items/${slug}?expand=images`)
     }
 }

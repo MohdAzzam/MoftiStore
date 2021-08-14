@@ -54,9 +54,9 @@ export default function Profile() {
                     </div>
                 </div>
                 <div className='user-tabs mt-4 d-flex'>
-                    <Tab label='مفضلتي' onClick={handlChangeTab} activeTab={view} name={VIEWS.FAVORITE} />
-                    <Tab label='عنواني' onClick={handlChangeTab} activeTab={view} name={VIEWS.ADDRESS} />
-                    <Tab label='طلباتي' onClick={handlChangeTab} activeTab={view} name={VIEWS.ORDERS} />
+                    <Tab label={VIEWS.FAVORITE} onClick={handlChangeTab} activeTab={view} name={VIEWS.FAVORITE} />
+                    <Tab label={VIEWS.ADDRESS} onClick={handlChangeTab} activeTab={view} name={VIEWS.ADDRESS} />
+                    <Tab label={VIEWS.ORDERS} onClick={handlChangeTab} activeTab={view} name={VIEWS.ORDERS} />
                 </div>
                 <div >
                     {view === VIEWS.FAVORITE ? (<UserFavoirets />) : view === VIEWS.ADDRESS ? (<Address />) : view === VIEWS.ORDERS ? (<Orders />) : []}

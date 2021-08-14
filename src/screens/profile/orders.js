@@ -87,7 +87,7 @@ export default function Orders() {
                                     <td>{indx + 1}</td>
                                     <td>{item.item.name}</td>
                                     <td >{item.item.price}</td>
-                                    <td ><img className='table-image' src={item.item.imageUrl} alt={item.item.name} /></td>
+                                    <td ><img className='table-image' src={item.item.featuredImage} alt={item.item.name} /></td>
                                     <td>{item.quantity}</td>
                                 </tr>
                             );

@@ -56,7 +56,7 @@ export default function UpdatePassword() {
     }
     
     return (
-        <div className='form-holder mt-4 mr-2 '>
+        <div className='form-holder mt-4 mr-2 ml-2'>
             <p className='profile-text-d  mt-4 mr-4 ml-4'>تعديل البيانات</p>
             <form className={loader ? 'hold-body' : 'mt-4 mb-4'}>
                 <Passwordinput name='old_password' label='Old Password' errors={errors} className='form-control' onChange={(e) => setValue('old_password', e.target.value)} />

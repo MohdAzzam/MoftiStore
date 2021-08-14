@@ -24,7 +24,6 @@ export default function Home() {
      */
     useEffect(() => {
         CategoryHelper.list().then(response => {
-            console.log(response.data.data);
             setCategory(response.data.data)
         }).catch(e => {
             console.log(e);
@@ -79,7 +78,7 @@ export default function Home() {
      * On load return list of product from the api 
      */
     useEffect(() => {
-        if (name==='' || name) {
+        if (name === '' || name) {
             ProductHelper.list(name).then(res => {
                 setItem(res.data.data);
             }).catch(e => {
@@ -90,11 +89,10 @@ export default function Home() {
     }, [name])
     return (
         <Container >
-            <Row>
-
+            <Row >
                 {category && category.map((item, indx) => {
                     return (
-                        <Col className='col-4 mt-4' key={indx} onClick={() => handelCategory(item.slug)}>
+                        <Col className='col-lg-4 col-sm-12 mt-4 ' key={indx} onClick={() => handelCategory(item.slug)}>
                             <Card style={{ width: '18rem' }} >
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>
@@ -104,6 +102,9 @@ export default function Home() {
                             </Card>
                         </Col>)
                 })}
+
+        
+
             </Row>
             <div className='user-search d-flex mt-4'>
                 {/* <Sort className={showNameForm ? 'd-none' : 'd-block'} onChange={setSort} sort={sort} /> */}
@@ -114,7 +115,6 @@ export default function Home() {
                 <Close className={showNameForm ? 'd-block cursor-pointer' : 'd-none'} onClick={handleChangeShowNameForm} />
             </div>
             <Product products={items} />
-
         </Container>
     )
 }

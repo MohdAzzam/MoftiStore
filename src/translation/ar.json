@@ -48,7 +48,7 @@
     "total":"المجموع",
     "user.reset":"تفريغ الحقول",
     "Street name":"اسم الشارع",
-    "Region":"المنطقة",
+    "Regon":"المنطقة",
     "City":"المدينة",
     "Country":"اسم البلد",
     "country is a required field":"أسم البلد مطلوب",
@@ -70,7 +70,10 @@
     "Edit address":"تعديل عنوان",
     "Add":"اضافة",
     "Save":"حفظ",
-    "Close":"اغلاق"
+    "Close":"اغلاق",
+    "FAVORITE":"مفضلتي",
+    "ADDRESS":"موقعي",
+    "ORDERS":"طلباتي"
 
 
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { FormattedMessage } from "react-intl";
 
 /**
  * 
@@ -21,6 +22,8 @@ export default function Tab({
     }, [activeTab, name])
 
     return (
-        <p className={isActive ? "user-tab active" : "user-tab"} onClick={() => onClick(name)} >{label}</p>
+        <p className={isActive ? "user-tab active" : "user-tab"} onClick={() => onClick(name)} >
+            <FormattedMessage id={label} />
+        </p>
     )
 }

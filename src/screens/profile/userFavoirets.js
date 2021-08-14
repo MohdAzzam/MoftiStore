@@ -87,7 +87,7 @@ export default function UserFavoirets() {
             {/** Filter form */}
             <section className={isLoading ? 'hold-body' : "filter-form"}>
                 <div className='mt-4 d-flex'>
-                    <label className='my-fav'>مفضلتي</label>
+                    <label className='my-fav'><FormattedMessage id='FAVORITE'/></label>
                     <div className='user-search d-flex'>
                         <Sort className={showNameForm ? 'd-none' : 'd-block'} onChange={setSort} sort={sort} />
                         <Search className='d-block cursor-pointer' onClick={handleChangeShowNameForm} />

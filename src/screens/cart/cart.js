@@ -102,14 +102,14 @@ export default function Cart() {
     }
     
     return (
-        <article>
+        <article className='container'>
             {load ? (<Loading />) : []}
             {message ? (
                 <div className={message.type === "success" ? "alert alert-success" : "alert alert-warning"}>
                     <FormattedMessage id={message.message} />
                 </div>
             ) : []}
-            <Container >
+            {/* <Container > */}
                 {userCart.total === 0 ? (
                     <h4 className='mt-4 text-center'>Cart Empty </h4>
                 ) : (
@@ -155,7 +155,7 @@ export default function Cart() {
 
                 )}
 
-            </Container>
+            {/* </Container> */}
         </article>
     )
 }

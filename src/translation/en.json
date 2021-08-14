@@ -47,7 +47,7 @@
     "total":"Total",
     "user.reset":"Reset",
     "Street name":"Street name",
-    "Region":"Region",
+    "Regon":"Regon",
     "City":"City",
     "Country":"Country",
     "country is a required field":"Country is a required field",
@@ -69,7 +69,10 @@
     "Edit address":"Edit address",
     "Add":"Add",
     "Save":"Save",
-    "Close":"Close"
+    "Close":"Close",
+    "FAVORITE":"My favorite",
+    "ADDRESS":"My address",
+    "ORDERS":"My orders"
 
 
 

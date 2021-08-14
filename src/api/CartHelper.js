@@ -1,22 +1,17 @@
 import axiosApi from './axiosApi';
 
-
-
-/**
- * 
- */
 export const CartHelper = {
     /**
-     * 
      * Return cart
+     * 
      * @returns {Promise}
      */
     myCart: () => {
         return axiosApi.get('/user-carts/my-cart?expand=items.item');
     },
     /**
+     * Add to cart 
      * 
-     * add to cart 
      * @param {Number} id 
      * @param {Number} quantity 
      * @returns 
@@ -37,8 +32,8 @@ export const CartHelper = {
         return axiosApi.delete(`/user-carts/delete-item/${id}?expand=items.item`);
     },
     /**
+     * Update quantity
      * 
-     * update quantity
      * @param {Number} id 
      * @param {Number} quantity 
      * @returns 
@@ -49,16 +44,16 @@ export const CartHelper = {
         })
     },
     /**
+     * Remove cart
      * 
-     * remove cart
      * @returns {Promise}
      */
     clearUserCart:()=>{
         return axiosApi.post('/user-carts/clear');
     },
     /**
-     * 
      * Check out 
+     * 
      * @param {Number} id 
      * @returns {Promise}
      */

@@ -18,7 +18,7 @@ export default function Cart() {
     }
     return (
         <div>
-            <ShoppingCart className='svg-img shopping-cart' onClick={handelCartPage} /> <label className='user-cart'>{userCartCount}</label>
+            <ShoppingCart className='svg-img shopping-cart mt-2' onClick={handelCartPage} /><label className='user-cart'>{userCartCount}</label>
         </div>
     );
 }

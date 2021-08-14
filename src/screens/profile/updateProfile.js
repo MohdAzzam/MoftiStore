@@ -92,7 +92,7 @@ export default function UpdateProfile() {
                 <p className='profile-back' onClick={back}>  العودة الى حسابي </p>
             </div>
             <Row>
-                <div className='form-holder mt-4 ml-2'>
+                <div className='form-holder mt-4 '>
                     <p className='profile-text-d  mt-4 mr-4 ml-4'>تعديل البيانات</p>
                     <form className={loader ? 'hold-body' : 'mt-4 mb-4'}>
                         <div className='input-wrapper'>

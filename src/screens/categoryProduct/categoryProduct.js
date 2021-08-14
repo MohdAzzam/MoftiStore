@@ -83,8 +83,8 @@ export default function CategoryProduct() {
         timer = timeout;
     }
     return (
-        <article className='mb-4 '>
-            <div className='user-search d-flex mt-4'>
+        <article className='mb-4 container'>
+            <div className=' d-flex mt-4'>
                 <Search className='d-block cursor-pointer' onClick={handleChangeShowNameForm} />
                 <form>
                     <input ref={inputEl} onChange={(e) => handleChangeName(e.target.value)} type='text' name='itemSearch' className={!showNameForm ? 'd-none' : 'form-control search-input'} placeholder='Search here ...' />
