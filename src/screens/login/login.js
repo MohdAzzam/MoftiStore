@@ -69,6 +69,9 @@ export default function Login() {
              */
             handelLoginUser(response.data);
             setIsLoading(false);
+            /**
+             * Redirect the user to the same page 
+             */
             if (query.get('ref')) {
                 // console.log(query.get('ref'))
                 window.location.replace(query.get('ref'))
@@ -92,7 +95,7 @@ export default function Login() {
 
         <Container className='mt-4'>
             {isLoding ? (<Loading />) : []}
-            <div className='row justify-content-center '>
+            <div className={isLoding?'hold-body':'row justify-content-center '}>
                 <div className='col-lg-6 col-sm-12'>
                     <form className={isLoding ? 'hold-body' : ''}>
                         <Input type='text' name='username' label='User Name' errors={errors} className='form-control' onChange={(e) => setValue('username', e.target.value)} />

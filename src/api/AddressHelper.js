@@ -19,7 +19,7 @@ export const AddressHelper = {
         return axiosApi.post('/user-address/create', data)
     },
     /**
-     * update address
+     * Update address
      * 
      * @param {Number} id 
      * @param {Object} data 
@@ -29,7 +29,7 @@ export const AddressHelper = {
         return axiosApi.patch(`/user-address/update?id=${id}`, data);
     },
     /**
-     * remove address 
+     * Remove address 
      * 
      * @param {Number} id 
      * @returns 

@@ -85,7 +85,7 @@ export default function SingleProduct() {
     /**
     * Export Form function
     */
-    const { setError, register, handleSubmit, setValue, formState: { errors } } = useForm();
+    const {  register, handleSubmit, setValue } = useForm();
     useEffect(() => {
         register('stock');
     }, [])
@@ -112,7 +112,6 @@ export default function SingleProduct() {
                     <h2>{item.name}</h2>
                     {/* Sliders */}
                     {sliderImage.length > 0 && sliderImage ? (
-                        <div className='w-100 h-100 '>
                             <SimpleImageSlider
                                 style={{ margin: '0 auto' }}
                                 width={740}
@@ -122,7 +121,6 @@ export default function SingleProduct() {
                                 slideDuration={1}
                                 {...sliderOptions}
                             />
-                        </div>
                     ) : []}
                     {/* <img src={item.imageUrl} alt={item.name} /> */}
                     <br />

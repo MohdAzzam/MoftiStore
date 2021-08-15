@@ -81,9 +81,15 @@ export default function AddressForm({
      * @param {*} e 
      */
     function handleCloseModal(e) {
+        /**
+         * Prevent the browser deault
+         */
         if (e) {
             e.preventDefault();
         }
+        /**
+         * Reset the input feild
+         */
         reset();
         handleClose();
     }

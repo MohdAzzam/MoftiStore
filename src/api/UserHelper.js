@@ -1,5 +1,5 @@
 import axiosApi from './axiosApi';
-
+import {expand} from './HelperMethods';
 
 export const UserHelper = {
     /**
@@ -22,8 +22,8 @@ export const UserHelper = {
     },
     /**
      * Return user info 
+     * 
      * @returns {Promise}
- 
      */
     me: () => {
         return axiosApi.get('/users/me')
@@ -43,15 +43,14 @@ export const UserHelper = {
      * 
      * @param {*} data 
      * @returns {Promise}
- 
      */
     passwordUpdate: (data) => {
         return axiosApi.patch('/users/change-password', data)
     },
-    // asc desc name
+
     /**
-     * 
      * Return user fav and sort it 
+     * 
      * @param {String} sort 
      * @param {String} name 
      * @param {Number} page 
@@ -63,11 +62,11 @@ export const UserHelper = {
     },
     /**
      * Return all order that user purches
+     * 
      * @returns {Promise}
- 
      */
     myOrder: () => {
-        return axiosApi.get('/users/my-orders?expand=items.item,address');
+        return axiosApi.get(`/users/my-orders${expand('items.item','address')}`);
     }
 
 }

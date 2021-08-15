@@ -1,6 +1,6 @@
 import axiosApi from './axiosApi';
 
-
+import {expand} from './HelperMethods';
 export const ProductHelper = {
 
     /**
@@ -45,6 +45,7 @@ export const ProductHelper = {
      * @returns {Promise}
      */
     itemBySlug: (slug) => {
-        return axiosApi.get(`/items/${slug}?expand=images`)
-    }
+        return axiosApi.get(`/items/${slug}${expand('images')}`)
+    },
+  
 }

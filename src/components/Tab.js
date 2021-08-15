@@ -15,8 +15,10 @@ export default function Tab({
     activeTab,
     onClick
 }) {
-
     const [isActive, setIsActive] = useState(false);
+    /**
+     * set the Active tab
+     */
     useEffect(() => {
         setIsActive(activeTab === name);
     }, [activeTab, name])

@@ -6,6 +6,9 @@ import { AddressHelper } from '../../api/AddressHelper';
 import { CartHelper } from '../../api/CartHelper';
 import { useHistory } from "react-router-dom";
 import GlobalContext from '../../context/GlobalContext'
+import toast, { Toaster } from 'react-hot-toast';
+import { FormattedMessage } from 'react-intl';
+
 /**
  * 
  * Check out page 
@@ -22,27 +25,27 @@ export default function CheckOut() {
      */
     useEffect(() => {
         CartHelper.myCart().then(res => {
-            console.log(res.data.total);
             setTotal(res.data.total);
         }).catch(err => {
-            console.log(err)
+            toast.error(<FormattedMessage id='generalErr'/>);
+
         })
     }, [])
 
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
     useEffect(() => {
         register('address_id');
     }, [])
     
     /**
-     * on load call my address api 
+     * on load call myaddress api   
      */
     useEffect(() => {
         AddressHelper.myAdressess().then(res => {
             let arr = [];
             let addresses = res.data.data;
             /**
-             * check if there is address
+             * check if user address if the user have no addressess set the first one as a default value
              */
             if (addresses.length) {
                 setValue('address_id', addresses[0].id);
@@ -58,7 +61,7 @@ export default function CheckOut() {
             })
             setMyaddress(arr)
         }).catch(e => {
-            console.log(e);
+            toast.error(<FormattedMessage id='generalErr'/>);
         })
     }, [])
 
@@ -76,7 +79,7 @@ export default function CheckOut() {
             handelCartCount(0);
             history.push('/thanks')
         }).catch(err=>{
-            console.log(err);
+            toast.error(<FormattedMessage id='generalErr'/>);
         })
     }
     
@@ -99,7 +102,8 @@ export default function CheckOut() {
                 </form>
 
             </div>
-
+            <Toaster position="top-right" />
+            
         </Container>
     );
 }

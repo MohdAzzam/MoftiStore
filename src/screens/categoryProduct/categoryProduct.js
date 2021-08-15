@@ -4,8 +4,7 @@ import { ProductHelper } from '../../api/ProductHelper';
 import Product from '../product/product';
 import Loading from '../../components/Loading';
 import Pagination from "../../components/BasePagination";
-import { ReactComponent as Search } from '../../assets/search-24px.svg';
-import { ReactComponent as Close } from '../../assets/close.svg';
+import SearchBox from '../../components/search';
 
 /**
  * Return all product in  category 
@@ -18,7 +17,6 @@ export default function CategoryProduct() {
     const [loadingLoad, setLoading] = useState(false);
     const [extra, setExtra] = useState(false);
     const [pageNumber, setPageNumber] = useState(1);
-    const [showNameForm, setShowNameForm] = useState(false)
     const [name, setName] = useState();
     /**
      * It call when change on slug or page number
@@ -29,7 +27,7 @@ export default function CategoryProduct() {
         /**
          * Call api 
          */
-        ProductHelper.listBySlug(slug, pageNumber,name).then(
+        ProductHelper.listBySlug(slug, pageNumber, name).then(
             response => {
                 /**
                  * Save the _meta from api that hold info about the pagination as nextlink 
@@ -47,50 +45,16 @@ export default function CategoryProduct() {
             console.log(e)
             setLoading(false);
         })
-    }, [slug, pageNumber,name]);
-    
-    /**
-     * on change on name in form  
-     */
-    useEffect(() => {
-        if (!showNameForm) {
-            setName('');
-            inputEl.current.value = '';
-        } else {
-            inputEl.current.focus();
-        }
-    }, [showNameForm])
-    /**
-     * show search form 
-     */
-    const handleChangeShowNameForm = () => {
-        setShowNameForm(!showNameForm)
+    }, [slug, pageNumber, name]);
+
+    const handelSearch = (childData) => {
+
+        setName(childData);
     }
-    /**
-     * handel change name
-     */
-    let timer;
-    const handleChangeName = (value) => {
-        if (timer) {
-            clearTimeout(timer);
-        }
-        /**
-         * every one secound set the value to the name
-         */
-        const timeout = setTimeout(() => {
-            setName(value);
-        }, 1000)
-        timer = timeout;
-    }
+
     return (
         <article className='mb-4 container'>
-            <div className=' d-flex mt-4'>
-                <Search className='d-block cursor-pointer' onClick={handleChangeShowNameForm} />
-                <form>
-                    <input ref={inputEl} onChange={(e) => handleChangeName(e.target.value)} type='text' name='itemSearch' className={!showNameForm ? 'd-none' : 'form-control search-input'} placeholder='Search here ...' />
-                </form>
-                <Close className={showNameForm ? 'd-block cursor-pointer' : 'd-none'} onClick={handleChangeShowNameForm} />
-            </div>
+            <SearchBox onChange={handelSearch} />
             {loadingLoad ? (<Loading />) : (
                 <>
                     <Product products={categoryItems} />

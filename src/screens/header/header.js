@@ -51,6 +51,9 @@ export default function Header() {
                 <Navbar.Brand href="/"><FormattedMessage id='home.title' /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+                   {/* 
+                    *   if there is a user login show the login nav otherwise show the guest
+                   */}
                     {user ? (<LoginUser />) : (<GuestUser />)}
                     <Nav>
                         <Nav.Link onClick={handelChangeLanguage}>

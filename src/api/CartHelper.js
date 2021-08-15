@@ -2,7 +2,7 @@ import axiosApi from './axiosApi';
 
 export const CartHelper = {
     /**
-     * Return cart
+     * Return Current User Cart
      * 
      * @returns {Promise}
      */
@@ -23,8 +23,8 @@ export const CartHelper = {
         });
     },
     /**
+     * Delete from cart
      * 
-     * delete from cart
      * @param {Number} id 
      * @returns 
      */
