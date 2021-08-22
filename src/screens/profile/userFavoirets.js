@@ -55,10 +55,10 @@ export default function UserFavoirets() {
         }
     }
 
-    const handelSearch = (childData) => {
-        setName(childData);
+    // const handelSearch = (childData) => {
+    //     setName(childData);
 
-    }
+    // }
 
     const handelShow=(bool)=>{
         // console.log(bool);
@@ -78,7 +78,7 @@ export default function UserFavoirets() {
                     <div className='user-search d-flex'>
                         <Sort className={show ? 'd-none' : 'd-block'} onChange={setSort} sort={sort} />
                     </div>
-                        <SearchBox onChange={handelSearch} handelShow={handelShow}/>
+                        <SearchBox onChange={setName} handelShow={handelShow}/>
                 </div>
             </section>
 
