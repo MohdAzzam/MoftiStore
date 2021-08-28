@@ -23,7 +23,6 @@ instance.interceptors.request.use(async config => {
      * Get User form localStorage 
      * add accessToken to the request headers
      * add Accept Language to the request headers
-     * 
      */
     const user = storage.get('user-info');
     if (user && user['access_token']) {

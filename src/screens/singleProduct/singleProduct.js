@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { CartHelper } from '../../api/CartHelper';
 import toast, { Toaster } from 'react-hot-toast';
+import SimpleImageSlider from "react-simple-image-slider";
 
 /**
  * Handel single product
@@ -20,8 +21,19 @@ export default function SingleProduct() {
     const { slug } = useParams();
     const [loader, setLoader] = useState(false);
     const [item, setItem] = useState({});
+    const [sliderImage, setSliderImage] = useState([]);
     const [isFavortie, setIsFavortie] = useState(false);
     const { user, handelCartCount } = useContext(GlobalContext.Context);
+
+    const sliderOptions = {
+        useGPURender: true,
+        showNavs: true,
+        showBullets: true,
+        navStyle: 1,
+        navSize: 50,
+        navMargin: 30,
+        bgColor: '#000'
+    };
     useEffect(() => {
         setLoader(true);
 
@@ -35,6 +47,15 @@ export default function SingleProduct() {
                  * Save item in state
                  */
                 setItem(response.data)
+                let arr = [];
+                response.data.images.map(item =>
+                    arr.push({
+                        url: item.imageUrl
+                    })
+                )
+                if (arr.length > 0 && arr.length) {
+                    setSliderImage(arr);
+                }
                 setIsFavortie(response.data.isFavoriteByCurrentUser)
             }
         ).catch(e => {
@@ -64,7 +85,7 @@ export default function SingleProduct() {
     /**
     * Export Form function
     */
-    const { setError, register, handleSubmit, setValue, formState: { errors } } = useForm();
+    const {  register, handleSubmit, setValue } = useForm();
     useEffect(() => {
         register('stock');
     }, [])
@@ -75,10 +96,10 @@ export default function SingleProduct() {
             console.log(res.data.totalItemsCount);
             handelCartCount(res.data.totalItemsCount)
             toast.success('Added Successfully');
-         
+
         }).catch(e => {
             toast.error(e.response.data.message);
-            
+
         })
 
     }
@@ -89,25 +110,37 @@ export default function SingleProduct() {
             {loader ? (<Loading />) : (
                 <section className='single-item mt-4'>
                     <h2>{item.name}</h2>
-                    <img src={item.imageUrl} alt={item.name} />
+                    {/* Sliders */}
+                    {sliderImage.length > 0 && sliderImage ? (
+                            <SimpleImageSlider
+                                style={{ margin: '0 auto' }}
+                                width={740}
+                                height={400}
+                                images={sliderImage}
+                                startIndex={1}
+                                slideDuration={1}
+                                {...sliderOptions}
+                            />
+                    ) : []}
+                    {/* <img src={item.imageUrl} alt={item.name} /> */}
                     <br />
                     <label><FormattedMessage id='price' /></label>
                     <h4>{item.price}</h4>
                     <label><FormattedMessage id='description' /> </label>
                     <span> {item.description}</span>
-                    <div>
+                    <div className='mb-4'>
                         <Favorite itemId={item.id} isFavortie={isFavortie} onClick={handleIsFavortieClick} />
                     </div>
                     <form >
-                        <input type='number' min='1' max={item.stock} required name='stock' className='form-control' onChange={(e) => setValue('stock', e.target.value)} />
+                        <input type='number' min='1' max={item.stock} required name='stock' className='form-control w-25 m-auto' onChange={(e) => setValue('stock', e.target.value)} />
 
-                        <button className='btn btn-primary' onClick={handleSubmit(handelForm)}><FormattedMessage id='addToCart' /></button>
+                        <button className='btn btn-primary mt-2' onClick={handleSubmit(handelForm)}><FormattedMessage id='addToCart' /></button>
 
                     </form>
                 </section>
             )}
-           
-            <Toaster position="top-right"/>
+
+            <Toaster position="top-right" />
         </article>
     );
 }

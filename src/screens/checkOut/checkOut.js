@@ -6,37 +6,53 @@ import { AddressHelper } from '../../api/AddressHelper';
 import { CartHelper } from '../../api/CartHelper';
 import { useHistory } from "react-router-dom";
 import GlobalContext from '../../context/GlobalContext'
+import toast, { Toaster } from 'react-hot-toast';
+import { FormattedMessage } from 'react-intl';
 
+/**
+ * 
+ * Check out page 
+ * 
+ * @returns {JSX}
+ */
 export default function CheckOut() {
     const { handelCartCount } = useContext(GlobalContext.Context)
-
     const history = useHistory();
     const [myaddress, setMyaddress] = useState([]);
     const [total, setTotal] = useState(false);
-
+    /**
+     * on load page call the my cart api
+     */
     useEffect(() => {
         CartHelper.myCart().then(res => {
-            console.log(res.data.total);
             setTotal(res.data.total);
         }).catch(err => {
-            console.log(err)
+            toast.error(<FormattedMessage id='generalErr'/>);
+
         })
     }, [])
 
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue } = useForm();
     useEffect(() => {
         register('address_id');
     }, [])
-
+    
+    /**
+     * on load call myaddress api   
+     */
     useEffect(() => {
         AddressHelper.myAdressess().then(res => {
             let arr = [];
             let addresses = res.data.data;
-
+            /**
+             * check if user address if the user have no addressess set the first one as a default value
+             */
             if (addresses.length) {
                 setValue('address_id', addresses[0].id);
             }
-
+            /**
+             * loop over address and add them to array to show them 
+             */
             addresses.forEach((item) => {
                 arr.push({
                     itemId: item.id,
@@ -45,21 +61,28 @@ export default function CheckOut() {
             })
             setMyaddress(arr)
         }).catch(e => {
-            console.log(e);
+            toast.error(<FormattedMessage id='generalErr'/>);
         })
     }, [])
 
-
+    /**
+     * handel checkout
+     *  
+     * @param {Object} data 
+     */
     const handelAddress = (data) => {
-        console.log(data);
         CartHelper.checkOut(data.address_id).then(res=>{
+            /**
+             * set the cart from context to zero 
+             * redirect the user to thanks page
+             */
             handelCartCount(0);
-
             history.push('/thanks')
         }).catch(err=>{
-            console.log(err);
+            toast.error(<FormattedMessage id='generalErr'/>);
         })
     }
+    
     return (
 
         <Container>
@@ -79,7 +102,8 @@ export default function CheckOut() {
                 </form>
 
             </div>
-
+            <Toaster position="top-right" />
+            
         </Container>
     );
 }

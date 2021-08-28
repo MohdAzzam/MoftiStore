@@ -10,7 +10,7 @@ import { UserHelper } from '../../api/UserHelper'
 import GlobalContext from '../../context/GlobalContext';
 import Loading from '../../components/Loading';
 import { useHistory } from "react-router-dom";
-import {getQueryParams} from '../../util/helperMethods';
+import { getQueryParams } from '../../util/helperMethods';
 import Passwordinput from '../../components/PasswordInput';
 
 
@@ -69,11 +69,14 @@ export default function Login() {
              */
             handelLoginUser(response.data);
             setIsLoading(false);
-            if(query.get('ref')){
+            /**
+             * Redirect the user to the same page 
+             */
+            if (query.get('ref')) {
                 // console.log(query.get('ref'))
-              window.location.replace(query.get('ref'))
+                window.location.replace(query.get('ref'))
 
-            }else{
+            } else {
 
                 history.push('/');
             }
@@ -92,13 +95,20 @@ export default function Login() {
 
         <Container className='mt-4'>
             {isLoding ? (<Loading />) : []}
+            <div className={isLoding?'hold-body':'row justify-content-center '}>
+                <div className='col-lg-6 col-sm-12'>
+                    <form className={isLoding ? 'hold-body' : ''}>
+                        <Input type='text' name='username' label='User Name' errors={errors} className='form-control' onChange={(e) => setValue('username', e.target.value)} />
 
-            <form className={isLoding ? 'hold-body' : ''}>
-                <Input type='text' name='username' label='User Name' errors={errors} className='form-control' onChange={(e) => setValue('username', e.target.value)} />
-                
-                <Passwordinput  name='password' label='Password' errors={errors} className='form-control' onChange={(e) => setValue('password', e.target.value)} />
-                <button onClick={handleSubmit(onSubmit)} className="btn btn-primary"><FormattedMessage id='guest.login' /></button>
-            </form>
+                        <Passwordinput name='password' label='Password' errors={errors} className='form-control' onChange={(e) => setValue('password', e.target.value)} />
+                        <button onClick={handleSubmit(onSubmit)} className="btn btn-primary"><FormattedMessage id='guest.login' /></button>
+                    </form>
+
+                </div>
+
+
+
+            </div>
 
         </Container>)
 }

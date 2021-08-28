@@ -47,13 +47,33 @@
     "total":"Total",
     "user.reset":"Reset",
     "Street name":"Street name",
-    "Region":"Region",
+    "Regon":"Regon",
     "City":"City",
-    "Country":"Country"
-
-
-
-
+    "Country":"Country",
+    "country is a required field":"Country is a required field",
+    "city is a required field":"City is a required field",
+    "region is a required field":"Region is a required field",
+    "street_name is a required field":"Street Name is a required field",
+    "Created At":"Created At",
+    "Status":"Status",
+    "Total":"Total",
+    "Address":"Address",
+    "Items":"Items",
+    "Add Addressess":"Add Addressess",
+    "Edit":"Edit",
+    "Delete":"Delete",
+    "Show Items":"Show Items",
+    "name":"Name",
+    "Image":"Image",
+    "Quantity":"Quantity",
+    "Edit address":"Edit address",
+    "Add":"Add",
+    "Save":"Save",
+    "Close":"Close",
+    "FAVORITE":"My favorite",
+    "ADDRESS":"My address",
+    "ORDERS":"My orders",
+    "generalErr":"OOps There is an error happend "
 
 
 

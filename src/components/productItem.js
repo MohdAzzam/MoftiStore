@@ -63,7 +63,7 @@ export default function ProductItem({ item, onChangeFavorite = noop }) {
         <article className=" col-lg-3 col-12">
             {load ? (<Loading />) : []}
             <div className='product-item d-lg-block d-none mt-4 '>
-                <img className='item-image' src={item.imageUrl} alt={item.name} onClick={() => handelProduct(item.slug)} />
+                <img className='item-image' src={item.featuredImage} alt={item.name} onClick={() => handelProduct(item.slug)} />
                 <div className='d-flex justify-content-between mt-4 mr-2 ml-2'>
                     <p className='item-name'>{item.name}</p>
                     <Favorite className='item-fav' itemId={item.id} isFavortie={isFavortie} onClick={handleIsFavortieClick} />
@@ -74,7 +74,7 @@ export default function ProductItem({ item, onChangeFavorite = noop }) {
 
             <div className='d-lg-none d-block product-item-small mt-4 '>
                 <div className='d-flex '>
-                    <img className='item-image ' src={item.imageUrl} alt={item.name} onClick={() => handelProduct(item.slug)} />
+                    <img className='item-image ' src={item.featuredImage} alt={item.name} onClick={() => handelProduct(item.slug)} />
                     <div className="product-content">
                         <div className='d-flex justify-content-between mt-3'>
                             <p className='item-date'>{item.created_at}</p>

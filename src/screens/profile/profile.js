@@ -10,6 +10,11 @@ import Address from './address';
 import { VIEWS } from '../../Constant';
 import Tab from '../../components/Tab';
 import Orders from './orders';
+/**
+ * 
+ * Profile 
+ * @returns {JSX}
+ */
 export default function Profile() {
     let history = useHistory();
     const { user } = useContext(GlobalContext.Context);
@@ -17,12 +22,17 @@ export default function Profile() {
 
     const [view, setView] = useState(VIEWS.FAVORITE);
 
-
+    /**
+     * Redirect to update profile page
+     */
     const handelProfile = () => {
         history.push('/update-profile');
     }
 
-
+    /**
+     * Tabs
+     * @param {String} name 
+     */
     function handlChangeTab(name) {
         setView(name)
     }
@@ -44,9 +54,9 @@ export default function Profile() {
                     </div>
                 </div>
                 <div className='user-tabs mt-4 d-flex'>
-                    <Tab label='مفضلتي' onClick={handlChangeTab} activeTab={view} name={VIEWS.FAVORITE} />
-                    <Tab label='عنواني' onClick={handlChangeTab} activeTab={view} name={VIEWS.ADDRESS} />
-                    <Tab label='طلباتي' onClick={handlChangeTab} activeTab={view} name={VIEWS.ORDERS} />
+                    <Tab label={VIEWS.FAVORITE} onClick={handlChangeTab} activeTab={view} name={VIEWS.FAVORITE} />
+                    <Tab label={VIEWS.ADDRESS} onClick={handlChangeTab} activeTab={view} name={VIEWS.ADDRESS} />
+                    <Tab label={VIEWS.ORDERS} onClick={handlChangeTab} activeTab={view} name={VIEWS.ORDERS} />
                 </div>
                 <div >
                     {view === VIEWS.FAVORITE ? (<UserFavoirets />) : view === VIEWS.ADDRESS ? (<Address />) : view === VIEWS.ORDERS ? (<Orders />) : []}

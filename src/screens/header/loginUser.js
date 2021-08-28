@@ -1,4 +1,4 @@
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { FormattedMessage } from "react-intl";
 import GlobalContext from "../../context/GlobalContext";
 import { useContext } from "react";
@@ -20,13 +20,12 @@ export default function LoginUser() {
     }
 
     return (
-        <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+      
             <Nav className="me-auto">
                 <Nav.Link href="/"><FormattedMessage id='user.home' /></Nav.Link>
                 <Nav.Link href="/"><FormattedMessage id='user.category' /></Nav.Link>
                 <Nav.Link href="/profile"><FormattedMessage id='user.profile' /></Nav.Link>
-                <div className='btn btn-dark' onClick={handelLogoutUser}><FormattedMessage id='user.logout' /></div>
+                <Nav.Link href="#"  onClick={handelLogoutUser}><FormattedMessage id='user.logout' /></Nav.Link>
             </Nav>
-        </Navbar.Collapse>
     )
 };

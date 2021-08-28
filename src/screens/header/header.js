@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container, Navbar } from 'react-bootstrap';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 import GuestUser from './guestUser';
 import stroage from '../../util/storage';
 import { GLOABL_CONSTANS } from '../../Constant';
@@ -50,10 +50,18 @@ export default function Header() {
             <Container>
                 <Navbar.Brand href="/"><FormattedMessage id='home.title' /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-
-                {user ? (<LoginUser />) : (<GuestUser />)}
-                <button className='btn btn-dark' onClick={handelChangeLanguage}>{language}</button>
-                <Cart/>
+                <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+                   {/* 
+                    *   if there is a user login show the login nav otherwise show the guest
+                   */}
+                    {user ? (<LoginUser />) : (<GuestUser />)}
+                    <Nav>
+                        <Nav.Link onClick={handelChangeLanguage}>
+                            {language}
+                        </Nav.Link>
+                    </Nav>
+                    {user ? <Cart /> : []}
+                </Navbar.Collapse>
             </Container>
         </Navbar>
     )

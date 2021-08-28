@@ -4,7 +4,17 @@ import Input from "../../components/Input";
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
+import { FormattedMessage } from "react-intl";
+/**
+ * 
+ * @param {Boolean} show 
+ * @param {*} handleClose 
+ * @param {String} action 
+ * @param {*} onSubmit 
+ * @param {String} address 
+ * @param {Number} entityId 
+ * @returns 
+ */
 export default function AddressForm({
     show,
     handleClose,
@@ -13,7 +23,9 @@ export default function AddressForm({
     address,
     entityId
 }) {
-
+    /**
+     * validatiion schema
+     */
     const validation = Yup.object().shape({
         country: Yup.string()
             .required(),
@@ -25,6 +37,7 @@ export default function AddressForm({
     const { register, unregister, handleSubmit, watch, setValue, reset, formState: { errors } } = useForm({
         resolver: yupResolver(validation)
     });
+
 
     useEffect(() => {
         register('country');
@@ -49,7 +62,12 @@ export default function AddressForm({
     }, [address, setValue])
 
     const model = watch();
-
+    /**
+     * Handle Submit data
+     * 
+     * @param {*} data 
+     *
+     */
     function handleSubmitData(data) {
         if (action === "add") {
             onSubmit(data);
@@ -58,10 +76,20 @@ export default function AddressForm({
         onSubmit(entityId, data);
     }
 
+    /**
+     * Close modal and reset the feild
+     * @param {*} e 
+     */
     function handleCloseModal(e) {
-        if(e){
+        /**
+         * Prevent the browser deault
+         */
+        if (e) {
             e.preventDefault();
         }
+        /**
+         * Reset the input feild
+         */
         reset();
         handleClose();
     }
@@ -71,7 +99,8 @@ export default function AddressForm({
             {show ? (
                 <Modal show={show} onHide={handleCloseModal}>
                     <Modal.Header closeButton>
-                        <Modal.Title>{action === "add" ? "Add Address" : "Edit address"}</Modal.Title>
+                        <Modal.Title>{action === "add" ? (<FormattedMessage id='Add Addressess' />) :
+                         (<FormattedMessage id="Edit address" />)}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <form>
@@ -116,10 +145,10 @@ export default function AddressForm({
                     </Modal.Body>
                     <Modal.Footer>
                         <button className='btn btn-primary' onClick={handleSubmit(handleSubmitData)} >
-                            {action === 'add' ? "Add" : "Save"}
+                            {action === 'add' ? (<FormattedMessage id="Add"/>) :(<FormattedMessage id="Save"/>)}
                         </button>
                         <button className='btn btn-secondary' onClick={handleCloseModal}>
-                            Close
+                            <FormattedMessage id='Close'/>
                         </button>
 
                     </Modal.Footer>

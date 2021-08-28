@@ -1,28 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Table } from 'react-bootstrap';
+import { FormattedMessage } from 'react-intl';
 import { AddressHelper } from '../../api/AddressHelper';
 import AddressForm from "./addressForm";
+import toast, { Toaster } from 'react-hot-toast';
 
+
+/**
+ * Address
+ * 
+ * @returns {JSX}
+ */
 export default function Address() {
     const [addressess, setAddressess] = useState(false);
     const [addressFormModal, setAddressFormModal] = useState({});
-
+    /**
+     * on load call the address api
+     */
     useEffect(() => {
         AddressHelper.myAdressess().then(response => {
             setAddressess(response.data.data);
         }).catch(e => {
-            console.log(e)
+            toast.error(<FormattedMessage id='generalErr' />);
+
         })
     }, [])
-
+    /**
+     * after adding new address call the api again throw this function
+     */
     const reloadTable = () => {
         AddressHelper.myAdressess().then(response => {
             setAddressess(response.data.data);
         }).catch(e => {
-            console.log(e)
+            toast.error(<FormattedMessage id='generalErr' />);
+
         })
     }
 
+    /**
+     * Show add modal
+     */
     function handleShowAddForm() {
         setAddressFormModal({
             show: true,
@@ -32,7 +49,13 @@ export default function Address() {
         });
     }
 
+    /**
+     * Show edit modal
+     * 
+     * @param {Object} item 
+     */
     function handleShowEditForm(item) {
+
         setAddressFormModal({
             show: true,
             handleClose: handleCloseAddressForm,
@@ -42,35 +65,56 @@ export default function Address() {
             entityId: item.id
         });
     }
-
+    /**
+     * Close modal 
+     * 
+     * @param {*} e 
+     */
     function handleCloseAddressForm(e) {
         if (e) {
             e.preventDefault();
         }
         setAddressFormModal({});
     }
-
+    /**
+     * Add addresss 
+     * 
+     * @param {*} data 
+     */
     function handleAddAddress(data) {
         handleCloseAddressForm();
         AddressHelper.addAddress(data).then((res) => {
             reloadTable();
         }).catch((err) => {
-
+            toast.error(<FormattedMessage id='generalErr'/>);
         })
     }
 
+    /**
+     * Update address
+     * 
+     * @param {Number} id 
+     * @param {*} data 
+     */
     function handleEditAddress(id, data) {
         handleCloseAddressForm();
         AddressHelper.updateAddress(id, data).then((res) => {
             reloadTable();
         }).catch((err) => {
+            toast.error(<FormattedMessage id='generalErr'/>);
 
         })
     }
-    const handleDelete =(id)=>{
+    /**
+     * Delete address
+     * 
+     * @param {Number} id 
+     */
+    const handleDelete = (id) => {
         AddressHelper.deleteAddress(id).then((res) => {
             reloadTable();
         }).catch((err) => {
+            toast.error(<FormattedMessage id='generalErr'/>);
 
         })
     }
@@ -79,7 +123,7 @@ export default function Address() {
 
             <div className='d-flex justify-content-between mt-4'>
                 <button className='btn btn-primary' onClick={handleShowAddForm}>
-                    Add Addressess
+                    <FormattedMessage id='Add Addressess' />
                 </button>
 
             </div>
@@ -89,10 +133,21 @@ export default function Address() {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Country</th>
-                            <th>City</th>
-                            <th>Regon</th>
-                            <th>Street name</th>
+                            <th>
+                                <FormattedMessage id='Country' />
+
+                            </th>
+                            <th>
+                                <FormattedMessage id='City' />
+
+                            </th>
+                            <th>
+                                <FormattedMessage id='Regon' />
+                            </th>
+                            <th>
+                                <FormattedMessage id='Street name' />
+
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -105,8 +160,12 @@ export default function Address() {
                                     <td>{item.city}</td>
                                     <td>{item.region}</td>
                                     <td>{item.street_name}</td>
-                                    <td className='btn btn-warning' onClick={() => handleShowEditForm(item)}>Edit</td>
-                                    <td className='btn btn-danger' onClick={() => handleDelete(item.id)}>Delete</td>
+                                    <td className='btn btn-warning' onClick={() => handleShowEditForm(item)}>
+                                        <FormattedMessage id='Edit' />
+                                    </td>
+                                    <td className='btn btn-danger' onClick={() => handleDelete(item.id)}>
+                                        <FormattedMessage id='Delete' />
+                                    </td>
 
                                 </tr>
                             )
@@ -115,6 +174,8 @@ export default function Address() {
                     </tbody>
                 </Table>
             </Row>
+            <Toaster position="top-right" />
+
         </Container >
     )
 }
